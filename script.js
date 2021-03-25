@@ -37,7 +37,9 @@ function toggleDisplay(e) {
 
 function validate() {
   gender = document.querySelector('input[name="gender"]:checked');
-  if (firstname.value && lastname.value && phoneMail.value && password.value && birthdate.value && gender) {
+  const val1 = firstname.value && lastname.value && phoneMail.value;
+  const val2 = password.value && birthdate.value && gender;
+  if (val1 && val2) {
     document.getElementById('error-message').style.display = 'none';
     console.log('campos preenchidos');
     return true;
