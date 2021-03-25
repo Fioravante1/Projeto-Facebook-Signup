@@ -5,51 +5,37 @@ btnLogin.addEventListener('click', () => {
   alert(entradaEmail.value);
 });
 
+const rqdFields = Object.values(document.getElementsByClassName('required'));
 const firstname = document.getElementById('firstname');
 const lastname = document.getElementById('lastname');
 const phoneMail = document.getElementById('phone-email');
-const password = document.getElementById('password');
 const birthdate = document.getElementById('birthdate');
+const errorMessage = document.getElementById('error-message');
+const genderCustom = document.getElementById('gender-custom');
 let gender;
-// https://stackoverflow.com/questions/15839169/how-to-get-value-of-selected-radio-button
-
-// function customGender() {
-//   if (!document.getElementById('gender-custom')) {
-//     console.log('personalizado');
-//     const gender = document.createElement('input');
-//     gender.id = 'gender-custom';
-//     gender.type = 'text';
-//     gender.placeholder = 'Gênero (opcional)';
-//     gender.name = 'gender-custom';
-//     // document.querySelector('.right-content form').insertBefore(gender, document.getElementById('facebook-register'));
-//     document.getElementById('facebook-register').insertAdjacentElement("beforebegin", gender);
-//   }
-// }
 
 // https://stackoverflow.com/questions/8454079/toggle-displaynone-style-with-javascript
 function toggleDisplay(e) {
   if (e.target.id === 'male' || e.target.id === 'female') {
-    document.getElementById('gender-custom').style.display = 'none';
+    genderCustom.style.display = 'none';
   } else {
-    document.getElementById('gender-custom').style.display = '';
+    genderCustom.style.display = '';
   }
 }
 
 function validate() {
+  // https://stackoverflow.com/questions/15839169/how-to-get-value-of-selected-radio-button
   gender = document.querySelector('input[name="gender"]:checked');
-  const val1 = firstname.value && lastname.value && phoneMail.value;
-  const val2 = password.value && birthdate.value && gender;
-  if (val1 && val2) {
-    document.getElementById('error-message').style.display = 'none';
-    console.log('campos preenchidos');
+  for (let i = 0; i < rqdFields.length; i += 1) {
+    if (!rqdFields[i].value) {
+      errorMessage.style.display = '';
+      return false;
+    }
+  }
+  if (gender) {
+    // document.getElementById('error-message').style.display = 'none';
     return true;
-  } 
-  // else {
-    // document.getElementById('error-message').style.display = '';
-    // console.log('algum campo vazio');
-    // alert('Campos inválidos');
-    // return false;
-  // }
+  }
 }
 
 function clearRightContent() {
@@ -60,24 +46,18 @@ function clearRightContent() {
 function newContent(e) {
   e.preventDefault();
   if (validate()) {
-    const newContent = document.createElement('p');
-    newContent.id = 'new-content';
-    newContent.innerHTML = 'Olá, ';
-    newContent.innerHTML += firstname.value;
-    newContent.innerHTML += ' ' + lastname.value + '<br />';
-    newContent.innerHTML += ' ' + phoneMail.value + '<br />';
-    newContent.innerHTML += ' ' + birthdate.value + '<br />';
-    // https://stackoverflow.com/questions/15839169/how-to-get-value-of-selected-radio-button
-    newContent.innerHTML += gender.value;
+    let result = `Olá, ${firstname.value} ${lastname.value}<br />`;
+    result += `${phoneMail.value}<br />${birthdate.value}<br />${gender.value}`;
+    const content = document.createElement('p');
+    content.id = 'new-content';
+    content.innerHTML = result;
     clearRightContent();
-    document.querySelector('.right-content').appendChild(newContent);
-  } else {
-    document.getElementById('error-message').style.display = '';
+    document.querySelector('.right-content').appendChild(content);
   }
 }
 
-document.getElementById('gender-custom').style.display = 'none';
-document.getElementById('error-message').style.display = 'none';
+genderCustom.style.display = 'none';
+errorMessage.style.display = 'none';
 
 // console.log(document.querySelector('input[name="gender"]:checked').value);
 const btnSubmit = document.getElementById('facebook-register');
