@@ -61,3 +61,56 @@
 #label-birthdate , #label-gender , #facebook-register {
   display: block;
 }
+
+#error-message {
+  color: red;
+}
+
+/* 
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+.top-bar , .container-header {
+  width: 100%;
+  display: flex;
+  background-color: rgb(66, 103, 178);
+  justify-content: space-between;
+  margin: auto;
+}
+
+.container-header {
+  width: 1100px;
+}
+
+.facebook-login {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+}
+
+.left-content {
+  width: 800px;
+}
+
+.right-content {
+  width: 300px;
+}
+
+
+
+.right-content input:first-of-type , .right-content input:nth-of-type( 2 ) {
+  width: 49%;
+}
+
+#label-birthdate , #label-gender , #facebook-register {
+  display: block;
+} */
