@@ -37,10 +37,21 @@ function toggleDisplay(e) {
   }
 }
 
-function validate() {
+/* function validate() {
   gender = document.querySelector('input[name="gender"]:checked');
   if (firstname.value && lastname.value && phoneMail.value && password.value && birthdate.value && gender) {
     errorMessage.style.display = 'none';
+    return true;
+  }
+} */
+
+const val1 = firstname.value && lastname.value && phoneMail.value;
+const val2 = password.value && birthdate.value && gender;
+
+function validate() {
+  gender = document.querySelector('input[name="gender"]:checked');
+  if (val1 && val2) {
+    document.getElementById('error-message').style.display = 'none';
     console.log('campos preenchidos');
     return true;
   }
