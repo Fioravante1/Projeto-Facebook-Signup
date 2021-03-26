@@ -5,31 +5,17 @@ btnLogin.addEventListener('click', () => {
   alert(entradaEmail.value);
 });
 
+const rqdFields = Object.values(document.getElementsByClassName('required'));
 const firstname = document.getElementById('firstname');
 const lastname = document.getElementById('lastname');
 const phoneMail = document.getElementById('phone-email');
-const password = document.getElementById('password');
 const birthdate = document.getElementById('birthdate');
 const errorMessage = document.getElementById('error-message');
+const genderCustom = document.getElementById('gender-custom');
 let gender;
-// https://stackoverflow.com/questions/15839169/how-to-get-value-of-selected-radio-button
-
-// function customGender() {
-//   if (!document.getElementById('gender-custom')) {
-//     console.log('personalizado');
-//     const gender = document.createElement('input');
-//     gender.id = 'gender-custom';
-//     gender.type = 'text';
-//     gender.placeholder = 'Gênero (opcional)';
-//     gender.name = 'gender-custom';
-//     // document.querySelector('.right-content form').insertBefore(gender, document.getElementById('facebook-register'));
-//     document.getElementById('facebook-register').insertAdjacentElement("beforebegin", gender);
-//   }
-// }
 
 // https://stackoverflow.com/questions/8454079/toggle-displaynone-style-with-javascript
 function toggleDisplay(e) {
-  const genderCustom = document.getElementById('gender-custom');
   if (e.target.id === 'male' || e.target.id === 'female') {
     genderCustom.style.display = 'none';
   } else {
@@ -46,6 +32,7 @@ function toggleDisplay(e) {
 } */
 
 function validate() {
+  // https://stackoverflow.com/questions/15839169/how-to-get-value-of-selected-radio-button
   gender = document.querySelector('input[name="gender"]:checked');
   const val1 = firstname.value && lastname.value && phoneMail.value;
   const val2 = password.value && birthdate.value && gender;
@@ -63,23 +50,17 @@ function clearRightContent() {
 function newContent(e) {
   e.preventDefault();
   if (validate()) {
+    let result = `Olá, ${firstname.value} ${lastname.value}<br />`;
+    result += `${phoneMail.value}<br />${birthdate.value}<br />${gender.value}`;
     const content = document.createElement('p');
     content.id = 'new-content';
-    content.innerHTML = 'Olá, ';
-    content.innerHTML += firstname.value;
-    content.innerHTML += ` ${lastname.value}<br />`;
-    content.innerHTML += ` ${phoneMail.value}<br />`;
-    content.innerHTML += ` ${birthdate.value}<br />`;
-    // https://stackoverflow.com/questions/15839169/how-to-get-value-of-selected-radio-button
-    content.innerHTML += gender.value;
+    content.innerHTML = result;
     clearRightContent();
     document.querySelector('.right-content').appendChild(content);
-  } else {
-    errorMessage.style.display = '';
   }
 }
 
-document.getElementById('gender-custom').style.display = 'none';
+genderCustom.style.display = 'none';
 errorMessage.style.display = 'none';
 
 // console.log(document.querySelector('input[name="gender"]:checked').value);

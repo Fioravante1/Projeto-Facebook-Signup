@@ -33,14 +33,14 @@
         <section class="right-content">
           <h1>Abra uma conta</h1>
           <div class="quick-easy">É rápido e fácil.</div>
-          <p id="error-message">Campos inválidos</p>
           <form action="" method="get">
-            <input type="text" id="firstname" name="firstname" placeholder="Nome">
-            <input type="text" id="lastname" name="lastname" placeholder="Sobrenome">
-            <input type="text" id="phone-email" name="phone_email" placeholder="Celular ou email">
-            <input type="password" id="password" name="password" placeholder="Nova senha">
+            <p id="error-message">Campos inválidos</p>
+            <input type="text" id="firstname" class="required" name="firstname" placeholder="Nome">
+            <input type="text" id="lastname" class="required" name="lastname" placeholder="Sobrenome">
+            <input type="text" id="phone-email" class="required" name="phone_email" placeholder="Celular ou email">
+            <input type="password" id="password" class="required" name="password" placeholder="Nova senha">
             <label for="birthdate" id="label-birthdate">Data de nascimento</label>
-            <input type="text" id="birthdate" name="birthdate" placeholder="dd/mm/aaaa">
+            <input type="text" id="birthdate" class="required" name="birthdate" placeholder="dd/mm/aaaa">
             <label for="" id="label-gender">Gênero</label>
             <input type="radio" id="female" name="gender" value="Feminino">
             <label for="female">Feminino</label>
